@@ -1,0 +1,11 @@
+- Sempre que for criar alguma entidade, alguma informação no
+banco de dados, irá criar um model
+
+- Repositorio: conexão entre a persistência dos dados e nossas rotas
+.   persistência <-> Repositorio <-> rotas
+
+- Dentro do Repositorio:
+// buscar informações: find
+// criar informações: create
+
+- Um Repositorio por model

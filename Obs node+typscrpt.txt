@@ -1,0 +1,23 @@
+yarn init -y
+
+yarn add <dependencias>
+.express
+.typescript -D
+
+yarn tsc --init (criar tsconfig.json de como o typescript sera executado no projeto)
+
+ - Dependencias usadas:
+
+@types/express -D
+typescript -D
+ts-node-dev -D (dois papeis: converte ts para js e faz o papel do nodemon)
+
+
+"scripts": {
+    "build": "tsc",
+    "dev:server": "ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts" p deixar rapidao
+  },
+
+yarn add eslint@6.8.0 -D
+
+yarn add date-fns

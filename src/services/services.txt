@@ -1,0 +1,3 @@
+- Pasta para realizar regras de negócio
+
+- O serviço sempre tem uma única e exclusiva funcionalidade (não colocar várias logicas)

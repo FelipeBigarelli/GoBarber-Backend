@@ -1,0 +1,7 @@
+// Controlam a versão do BD e controlam alterações simultâneas do BD
+
+// Dev cria um arquivo de migration que tem as instruções das alterações que quer fazer no BD  
+
+// Evita que os BD estejam atualizados de formas diferentes
+
+// typeorm (no package.json) para executar a migration usando o typescript: ts-node-dev
