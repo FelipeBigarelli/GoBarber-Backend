@@ -1,5 +1,6 @@
-// Controller (seguindo padrões da arquitetura RESTFULL API): no max, 5 métodos:
-// index, show, create, update, delete
+/** Controller (seguindo padrões da arquitetura RESTFULL API) -> no max, 5 métodos:
+ * index: listar todos; show: listar um; create; update: atualizar todas as infos da entidade; delete
+ */
 
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
