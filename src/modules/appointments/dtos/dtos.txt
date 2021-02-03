@@ -1,0 +1,2 @@
+Sempre que precisar uma informação composta utilizada para criar, deletar, listar... Cria-se
+um dto

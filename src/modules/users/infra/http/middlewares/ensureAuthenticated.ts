@@ -3,9 +3,9 @@ import { Request, Response, NextFunction } from 'express';
 import { verify } from 'jsonwebtoken';
 // verify: retorna token decodificado caso este seja válido
 
-import AppError from '../errors/AppError';
+import AppError from '@shared/errors/AppError';
 
-import authConfig from '../config/auth';
+import authConfig from '@config/auth';
 
 interface TokenPayLoad {
     iat: number;

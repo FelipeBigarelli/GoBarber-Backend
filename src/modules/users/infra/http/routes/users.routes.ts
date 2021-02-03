@@ -1,30 +1,18 @@
 import { Router } from 'express';
 import multer from 'multer';
-import uploadConfig from '../config/upload';
+import uploadConfig from '@config/upload';
+import { container } from 'tsyringe';
 
-import CreateUserService from '../services/CreateUserService';
-import UpdateUserService from '../services/UpdateUserAvatarService';
+import UpdateUserAvatarService from '@modules/users/services/UpdateUserAvatarService';
+import UsersController from '../controllers/UsersController';
 
 import ensureAuthenticated from '../middlewares/ensureAuthenticated';
 
 const usersRouter = Router();
+const usersController = new UsersController();
 const upload = multer(uploadConfig); // instância do multer para fazer upload de arquivos
 
-usersRouter.post('/', async (request, response) => {
-    const { name, email, password } = request.body;
-
-    const createUser = new CreateUserService();
-
-    const user = await createUser.execute({
-        name,
-        email,
-        password,
-    });
-
-    delete user.password; //para nao aparecer na resposta
-
-    return response.json(user);
-});
+usersRouter.post('/', usersController.create);
 
 // atualizar uma única info do usuário (ex: senha, avatar)
 usersRouter.patch(
@@ -32,7 +20,7 @@ usersRouter.patch(
     ensureAuthenticated,
     upload.single('avatar'),
     async (request, response) => {
-        const updateUserAvatar = new UpdateUserService();
+        const updateUserAvatar = container.resolve(UpdateUserAvatarService);
 
         const user = await updateUserAvatar.execute({
             user_id: request.user.id,

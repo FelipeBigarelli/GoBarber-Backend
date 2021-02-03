@@ -10,7 +10,7 @@ import {
     JoinColumn,
 } from 'typeorm'; // model que vai ser salvo no BD
 
-import User from './User';
+import User from '@modules/users/infra/typeorm/entities/User';
 
 @Entity('appointments') //Como se fosse uma funcao, e como parametro, passa a class abaixo como parametro
 class Appointment {

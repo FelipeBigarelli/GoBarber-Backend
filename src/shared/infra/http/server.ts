@@ -1,16 +1,20 @@
 import 'reflect-metadata';
 
 import express, { Request, Response, NextFunction } from 'express';
+import cors from 'cors';
 import 'express-async-errors';
 
-import routes from './routes/index';
-import uploadConfig from './config/upload';
-import AppError from './errors/AppError';
+import uploadConfig from '@config/upload';
+import AppError from '@shared/errors/AppError';
+import routes from './routes';
 
-import './database';
+import '@shared/infra/typeorm';
+import '@shared/container';
 
 const app = express();
 
+// Cors: evita que alguns sites que não sejam confiáveis da aplicação possam acessar o site
+app.use(cors());
 app.use(express.json());
 app.use('/files', express.static(uploadConfig.directory));
 app.use(routes);

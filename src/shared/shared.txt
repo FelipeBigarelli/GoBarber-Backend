@@ -1,0 +1,1 @@
+pasta onde é compartilhada com mais de um modulo

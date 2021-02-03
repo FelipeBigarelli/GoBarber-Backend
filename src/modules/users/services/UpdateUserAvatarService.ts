@@ -1,27 +1,32 @@
 /* eslint-disable camelcase */
-import { getRepository } from 'typeorm';
 import path from 'path';
 import fs from 'fs';
+import { inject, injectable } from 'tsyringe';
 
-import uploadConfig from '../config/upload';
+import uploadConfig from '@config/upload';
 
-import AppError from '../errors/AppError';
+import AppError from '@shared/errors/AppError';
+import IUsersRepository from '../repositories/IUsersRepository';
 
-import User from '../models/User';
+import User from '../infra/typeorm/entities/User';
 
-interface RequestDTO {
+interface IRequestDTO {
     user_id: string;
     avatarFilename: string;
 }
 
+@injectable()
 class UpdateUserAvatarService {
+    constructor(
+        @inject('UsersRepository')
+        private usersRepository: IUsersRepository,
+    ) {}
+
     public async execute({
         user_id,
         avatarFilename,
-    }: RequestDTO): Promise<User> {
-        const usersRepository = getRepository(User);
-
-        const user = await usersRepository.findOne(user_id);
+    }: IRequestDTO): Promise<User> {
+        const user = await this.usersRepository.findById(user_id);
 
         if (!user) {
             throw new AppError(
@@ -50,7 +55,7 @@ class UpdateUserAvatarService {
 
         user.avatar = avatarFilename;
 
-        await usersRepository.save(user); // Se n tiver id do user, ele cria, se s, atualiza
+        await this.usersRepository.save(user); // Se n tiver id do user, ele cria, se s, atualiza
 
         return user;
     }
