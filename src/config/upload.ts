@@ -6,7 +6,8 @@ import multer from 'multer';
 const tmpFolder = path.resolve(__dirname, '..', '..', 'tmp');
 
 export default {
-    directory: tmpFolder, // saber onde os arquivos ficam
+    tmpFolder,
+    uploadsFolder: path.resolve(tmpFolder, 'uploads'),
 
     storage: multer.diskStorage({
         destination: tmpFolder, // arquivos de upload vao para essa pasta

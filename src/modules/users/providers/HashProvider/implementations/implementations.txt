@@ -1,0 +1,1 @@
+Implementations: biblioteca ou forma de implementar a questão de hash

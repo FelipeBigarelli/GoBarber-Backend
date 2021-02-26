@@ -1,0 +1,2 @@
+Onde fica a interface: quais os métodos que o provedor de hash precisa ter para que
+possa comunicar com a aplicação
