@@ -7,7 +7,7 @@ import AppError from '@shared/errors/AppError';
 
 import authConfig from '@config/auth';
 
-interface TokenPayLoad {
+interface ITokenPayLoad {
     iat: number;
     exp: number;
     sub: string;
@@ -34,7 +34,7 @@ export default function ensureAuthenticated(
         const decoded = verify(token, authConfig.jwt.secret);
 
         // se decoded retornar um user valido
-        const { sub } = decoded as TokenPayLoad; //  forçar decoded para tipo TokenPayLoad
+        const { sub } = decoded as ITokenPayLoad; //  forçar decoded para tipo TokenPayLoad
 
         request.user = {
             id: sub,
