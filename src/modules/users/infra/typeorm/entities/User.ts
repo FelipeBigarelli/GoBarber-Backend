@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import {
     Entity,
     Column,
@@ -6,6 +5,9 @@ import {
     CreateDateColumn,
     UpdateDateColumn,
 } from 'typeorm';
+
+import { Exclude, Expose } from 'class-transformer';
+// Exclude: quando for pro frontend, excluir a info para nao aparecer
 
 @Entity('users')
 class User {
@@ -19,6 +21,7 @@ class User {
     email: string;
 
     @Column()
+    @Exclude()
     password: string;
 
     @Column()
@@ -29,6 +32,13 @@ class User {
 
     @UpdateDateColumn()
     updated_at: Date;
+
+    @Expose({ name: 'avatar_url' })
+    getAvatarUrl(): string | null {
+        return this.avatar
+            ? `${process.env.APP_API_URL}/files/${this.avatar}`
+            : null;
+    }
 }
 
 export default User;

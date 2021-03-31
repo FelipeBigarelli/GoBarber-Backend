@@ -8,7 +8,7 @@ class DiskStorageProvider implements IStorageProvider {
     public async saveFile(file: string): Promise<string> {
         await fs.promises.rename(
             path.resolve(uploadConfig.tmpFolder, file),
-            path.resolve(uploadConfig.uploadsFolder, 'uploads', file),
+            path.resolve(uploadConfig.uploadsFolder, file),
         );
 
         return file;
@@ -19,7 +19,7 @@ class DiskStorageProvider implements IStorageProvider {
 
         try {
             await fs.promises.stat(filePath); // verificar se tem file
-        } catch {
+        } catch (error) {
             return;
         }
 

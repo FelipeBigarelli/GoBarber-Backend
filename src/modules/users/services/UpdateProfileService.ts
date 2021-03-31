@@ -67,6 +67,10 @@ class UpdateProfileService {
             }
 
             user.password = await this.hashProvider.generateHash(password);
+
+            if (password === old_password) {
+                throw new AppError('New password is equal to old password');
+            }
         }
 
         return this.usersRepository.save(user);
