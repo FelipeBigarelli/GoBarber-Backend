@@ -1,6 +1,7 @@
 import AppError from '@shared/errors/AppError';
 
 import FakeNotificationsRepository from '@modules/notifications/repositories/fakes/FakeNotificationsRepository';
+import FakeCacheProvider from '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
 import FakeAppointmentsRepository from '../repositories/fakes/FakeAppointmentsRepository';
 import CreateAppointmentService from './CreateAppointmentService';
 
@@ -8,17 +9,20 @@ import CreateAppointmentService from './CreateAppointmentService';
 // Criar Fake Repository: para não mexer no bd, pois é muito passível a erros
 
 let fakeAppointmentsRepository: FakeAppointmentsRepository;
-let createAppointment: CreateAppointmentService;
 let fakeNotificationsRepository: FakeNotificationsRepository;
+let fakeCacheProvider: FakeCacheProvider;
+let createAppointment: CreateAppointmentService;
 
 describe('CreateAppointment', () => {
     beforeEach(() => {
         fakeAppointmentsRepository = new FakeAppointmentsRepository();
         fakeNotificationsRepository = new FakeNotificationsRepository();
+        fakeCacheProvider = new FakeCacheProvider();
 
         createAppointment = new CreateAppointmentService(
             fakeAppointmentsRepository,
             fakeNotificationsRepository,
+            fakeCacheProvider,
         );
     });
 

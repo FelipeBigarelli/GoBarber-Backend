@@ -15,7 +15,7 @@ export default {
     defaults: {
         from: {
             email: 'felipebigarelli@zohomail.com',
-            name: 'Felipe Bigarelli',
+            name: 'Felipe Bigarelli Zohomail',
         },
     },
 } as IMailConfig;

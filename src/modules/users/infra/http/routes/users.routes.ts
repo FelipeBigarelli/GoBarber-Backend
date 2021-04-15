@@ -12,7 +12,7 @@ import ensureAuthenticated from '../middlewares/ensureAuthenticated';
 const usersRouter = Router();
 const usersController = new UsersController();
 const userAvatarController = new UserAvatarController();
-const upload = multer(uploadConfig); // instância do multer para fazer upload de arquivos
+const upload = multer(uploadConfig.multer); // instância do multer para fazer upload de arquivos
 
 usersRouter.post(
     '/',
