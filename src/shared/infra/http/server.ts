@@ -17,9 +17,9 @@ import '@shared/container';
 const app = express();
 
 // Cors: evita que alguns sites que não sejam confiáveis da aplicação possam acessar o site
-app.use(rateLimiter);
 app.use(cors());
 app.use(express.json());
+app.use(rateLimiter);
 app.use('/files', express.static(uploadConfig.uploadsFolder));
 app.use(routes);
 
